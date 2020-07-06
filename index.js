@@ -1,14 +1,23 @@
 const express = require('express');
 const volleyball = require('volleyball');
+const cors = require('cors');
 
 const app = express();
 
 const auth = require('./auth/index.js');
 
 app.use(volleyball);
+
+const corsOptions = {
+    origin: 'http://localhost:8080',
+    optionSuccessStatus: 200
+}
+
+app.use(cors(corsOptions));
+
 app.use(express.json());
 
-app.get('/', (req, res) => {
+app.get('/',  (req, res) => {
     res.json({
         message: 'Hello World!'
     });
